@@ -15,7 +15,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_riverpod: ^2.3.7
+  gallery_saver: ^2.3.2
   google_fonts: ^4.0.4
+  image_picker: ^1.0.2
+  path_provider: ^2.1.0
   riverpod: ^2.3.7
 
 dev_dependencies:
@@ -33,3 +36,4 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
+    - assets/anton/

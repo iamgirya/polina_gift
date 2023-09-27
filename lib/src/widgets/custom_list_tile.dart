@@ -5,9 +5,13 @@ class CustomListTile extends StatelessWidget {
     super.key,
     required this.title,
     this.onTap,
+    this.width,
+    this.height = 45,
     this.child,
   });
   final String title;
+  final double? width;
+  final double height;
   final Widget? child;
   final void Function()? onTap;
 
@@ -48,15 +52,16 @@ class CustomListTile extends StatelessWidget {
             ),
             borderRadius: BorderRadius.all(Radius.circular(99.0)),
           ),
-          height: 45,
+          height: height,
+          width: width,
           child: Container(
             alignment: Alignment.center,
             child: child ??
                 Text(
                   title,
-                  style: const TextStyle(
-                    color: Color.fromARGB(255, 255, 255, 220),
-                    fontSize: 24,
+                  style: TextStyle(
+                    color: const Color.fromARGB(255, 255, 255, 220),
+                    fontSize: title.length < 20 ? 24 : 22,
                     fontWeight: FontWeight.w700,
                   ),
                   textAlign: TextAlign.center,

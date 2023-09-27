@@ -16,20 +16,31 @@ class WherePhoneButton extends ConsumerWidget {
     final title = state == 0
         ? 'Где мой телефон?!'
         : state == 1
-            ? 'Хм, ищем...'
+            ? 'Надо поискать'
             : 'Так вот же он, в руках!';
-    return CustomListTile(
-      title: title,
-      child: state == 1 ? CircularProgressIndicator() : null,
-      onTap: () async {
-        if (state == 0) {
-          ref.read(wherePhoneState.notifier).update((state) => 1);
-          await Future.delayed(const Duration(seconds: 1));
-          ref.read(wherePhoneState.notifier).update((state) => 2);
-          await Future.delayed(const Duration(seconds: 1, milliseconds: 500));
-          ref.read(wherePhoneState.notifier).update((state) => 0);
-        }
-      },
+    return AnimatedCrossFade(
+      duration: const Duration(milliseconds: 500),
+      firstCurve: Curves.easeInExpo,
+      crossFadeState:
+          state != 1 ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+      firstChild: CustomListTile(
+        title: title,
+        onTap: () async {
+          if (state == 0) {
+            ref.read(wherePhoneState.notifier).update((state) => 1);
+            await Future.delayed(const Duration(seconds: 3));
+            ref.read(wherePhoneState.notifier).update((state) => 2);
+            await Future.delayed(const Duration(seconds: 3, milliseconds: 500));
+            ref.read(wherePhoneState.notifier).update((state) => 0);
+          }
+        },
+      ),
+      secondChild: CustomListTile(
+        title: title,
+        child: const CircularProgressIndicator(
+          backgroundColor: Colors.deepPurple,
+        ),
+      ),
     );
   }
 }
