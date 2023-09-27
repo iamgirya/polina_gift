@@ -4,6 +4,7 @@ import 'package:polina_gift/src/features/good_girl_screen.dart';
 import 'package:polina_gift/src/widgets/custom_list_tile.dart';
 
 import '../features/random_shastun.dart';
+import '../features/sofia_page.dart';
 import '../features/where_phone.dart';
 import '../settings/settings_view.dart';
 import 'sample_item.dart';
@@ -90,13 +91,7 @@ class SampleItemListView extends ConsumerWidget {
               const RandomShastunButton(),
               const WherePhoneButton(),
               const GoodGirlButton(),
-              CustomListTile(
-                title: 'Срочно посплетничать!',
-                onTap: () {
-                  print(1);
-                },
-              ),
-              //https://vk.com/im?sel=383189143
+              const SofiaPageButton(),
             ],
           ),
         ],
