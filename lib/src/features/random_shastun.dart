@@ -4,7 +4,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gallery_saver/gallery_saver.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../widgets/custom_list_tile.dart';
@@ -28,7 +27,7 @@ class _RandomShastunButtonState extends State<RandomShastunButton> {
     'Шастуна мне!',
     'Антона хачу',
     'Обновить рабочий стол надо',
-    'https://get_anton_?count=1',
+    'https://get_anton?count=1',
     'Фотку длинного бы',
     'Шастуна!',
     'Призыв Антона',
@@ -67,8 +66,7 @@ class ShastunDialog extends StatelessWidget {
     return Dialog(
       backgroundColor: Colors.transparent,
       insetPadding: const EdgeInsets.all(0),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0)), //this right here
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GestureDetector(
@@ -115,7 +113,7 @@ class ShastunDialog extends StatelessWidget {
                         // ignore: use_build_context_synchronously
                         Navigator.of(context).pop();
                       } catch (e) {
-                        print(e);
+                        //print(e);
                       }
                     },
                     width: 210,

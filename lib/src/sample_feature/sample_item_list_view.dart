@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:polina_gift/src/features/good_girl_screen.dart';
 import 'package:polina_gift/src/widgets/custom_list_tile.dart';
 
 import '../features/random_shastun.dart';
@@ -88,12 +89,14 @@ class SampleItemListView extends ConsumerWidget {
               ),
               const RandomShastunButton(),
               const WherePhoneButton(),
+              const GoodGirlButton(),
               CustomListTile(
-                title: 'Вторая кнопка',
+                title: 'Срочно посплетничать!',
                 onTap: () {
                   print(1);
                 },
               ),
+              //https://vk.com/im?sel=383189143
             ],
           ),
         ],
