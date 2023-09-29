@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:polina_gift/src/features/good_girl_screen.dart';
+import 'package:polina_gift/src/features/sounds_on_sadness.dart';
 import 'package:polina_gift/src/widgets/custom_list_tile.dart';
 
+import '../features/how_i_look.dart';
 import '../features/random_shastun.dart';
 import '../features/sofia_page.dart';
 import '../features/where_phone.dart';
@@ -81,17 +83,14 @@ class SampleItemListView extends ConsumerWidget {
           ),
           ListView(
             padding: const EdgeInsets.only(top: 16),
-            children: [
-              CustomListTile(
-                title: 'Первая кнопка',
-                onTap: () {
-                  print(1);
-                },
-              ),
-              const RandomShastunButton(),
-              const WherePhoneButton(),
-              const GoodGirlButton(),
-              const SofiaPageButton(),
+            children: const [
+              // пермишен хендлер ещё заюзай
+              SoundsOnSadnessButton(),
+              RandomShastunButton(),
+              WherePhoneButton(),
+              GoodGirlButton(),
+              SofiaPageButton(),
+              HowIlookButton(),
             ],
           ),
         ],

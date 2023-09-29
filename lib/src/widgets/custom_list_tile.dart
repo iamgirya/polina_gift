@@ -46,7 +46,7 @@ class CustomListTile extends StatelessWidget {
               end: Alignment.bottomRight,
               colors: [
                 Colors.deepPurple,
-                Color.fromARGB(255, 131, 10, 224),
+                Color.fromARGB(255, 153, 10, 224),
                 Colors.deepPurple,
               ],
             ),
