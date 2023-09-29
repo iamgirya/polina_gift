@@ -16,31 +16,46 @@ class WherePhoneButton extends ConsumerWidget {
     final title = state == 0
         ? 'Где мой телефон?!'
         : state == 1
-            ? 'Надо поискать'
+            ? 'Хм..'
             : 'Так вот же он, в руках!';
-    return AnimatedCrossFade(
-      duration: const Duration(milliseconds: 500),
-      firstCurve: Curves.easeInExpo,
-      crossFadeState:
-          state != 1 ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-      firstChild: CustomListTile(
-        title: title,
-        onTap: () async {
-          if (state == 0) {
-            ref.read(wherePhoneState.notifier).update((state) => 1);
-            await Future.delayed(const Duration(seconds: 3));
-            ref.read(wherePhoneState.notifier).update((state) => 2);
-            await Future.delayed(const Duration(seconds: 3, milliseconds: 500));
-            ref.read(wherePhoneState.notifier).update((state) => 0);
-          }
-        },
-      ),
-      secondChild: CustomListTile(
-        title: title,
-        child: const CircularProgressIndicator(
-          backgroundColor: Colors.deepPurple,
+    return CustomListTile(
+      title: title,
+      child: SizedBox(
+        width: 250,
+        child: Center(
+          child: AnimatedCrossFade(
+            duration: const Duration(milliseconds: 500),
+            firstCurve: Curves.easeInExpo,
+            crossFadeState: state != 1
+                ? CrossFadeState.showFirst
+                : CrossFadeState.showSecond,
+            firstChild: Text(
+              title,
+              style: TextStyle(
+                color: const Color.fromARGB(255, 255, 255, 220),
+                fontSize: title.length < 20 ? 24 : 22,
+                fontWeight: FontWeight.w700,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            secondChild: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.deepPurple,
+              ),
+            ),
+          ),
         ),
       ),
+      onTap: () async {
+        if (state == 0) {
+          ref.read(wherePhoneState.notifier).update((state) => 1);
+          await Future.delayed(const Duration(seconds: 3));
+          ref.read(wherePhoneState.notifier).update((state) => 2);
+          await Future.delayed(const Duration(seconds: 3, milliseconds: 500));
+          ref.read(wherePhoneState.notifier).update((state) => 0);
+        }
+      },
     );
   }
 }

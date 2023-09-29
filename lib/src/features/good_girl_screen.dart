@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:polina_gift/src/widgets/custom_list_tile.dart';
 
+import 'how_i_look.dart';
+
 final camerasHolder = FutureProvider<List<CameraDescription>>(
   (ref) async => await availableCameras(),
 );
@@ -51,12 +53,12 @@ class _GoodGirlScreenState extends ConsumerState<GoodGirlScreen> {
           (element) => element.lensDirection == CameraLensDirection.front);
       controller = CameraController(camera, ResolutionPreset.max);
 
+      ref.read(enterOnCameraScreenHolder.notifier).update((state) => true);
       controller.initialize().then((_) {
         if (!mounted) {
           return;
         }
         setState(() {});
-        ref.read(enterOnCameraScreenHolder.notifier).update((state) => true);
       }).catchError((Object e) {
         if (e is CameraException) {
           switch (e.code) {
@@ -95,12 +97,20 @@ class _GoodGirlScreenState extends ConsumerState<GoodGirlScreen> {
             height: MediaQuery.of(context).size.height / 6 * 5,
             child: !controller.value.isInitialized
                 ? const Center(
-                    child: CircularProgressIndicator(color: Colors.deepPurple))
+                    child: CircularProgressIndicator(color: Colors.deepPurple),
+                  )
                 : errorState
                     ? const CustomListTile(
                         title: 'Блин, чёт сломалось. Перезапусти-ка приложение',
                       )
-                    : CameraPreview(controller),
+                    : Column(
+                        children: [
+                          Expanded(
+                            child: CameraPreview(controller),
+                          ),
+                          const HowIlookButton(),
+                        ],
+                      ),
           ),
         ),
       ),

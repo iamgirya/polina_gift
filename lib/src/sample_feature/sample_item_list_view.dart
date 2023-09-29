@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:polina_gift/src/features/good_girl_screen.dart';
 import 'package:polina_gift/src/features/sounds_on_sadness.dart';
-import 'package:polina_gift/src/widgets/custom_list_tile.dart';
 
-import '../features/how_i_look.dart';
 import '../features/random_shastun.dart';
-import '../features/sofia_page.dart';
+import '../features/spletnya.dart';
 import '../features/where_phone.dart';
 import '../settings/settings_view.dart';
 import 'sample_item.dart';
@@ -81,17 +79,19 @@ class SampleItemListView extends ConsumerWidget {
               ),
             ),
           ),
-          ListView(
-            padding: const EdgeInsets.only(top: 16),
-            children: const [
-              // пермишен хендлер ещё заюзай
-              SoundsOnSadnessButton(),
-              RandomShastunButton(),
-              WherePhoneButton(),
-              GoodGirlButton(),
-              SofiaPageButton(),
-              HowIlookButton(),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(top: 32, bottom: 32),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                // пермишен хендлер ещё заюзай
+                WherePhoneButton(),
+                RandomShastunButton(),
+                SoundsOnSadnessButton(),
+                GoodGirlButton(),
+                SpletnyaButton(),
+              ],
+            ),
           ),
         ],
       ),
