@@ -4,11 +4,12 @@ import 'package:permission_handler/permission_handler.dart';
 
 import 'src/app.dart';
 import 'src/features/good_girl_screen.dart';
+import 'src/features/permission.dart';
 
-bool isPermissionGranted = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  isPermissionGranted = await Permission.camera.isGranted;
+  isPermissionGranted = await Permission.camera.isGranted &&
+      await Permission.microphone.isGranted;
 
   runApp(
     ProviderScope(

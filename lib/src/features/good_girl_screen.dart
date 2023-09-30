@@ -53,7 +53,8 @@ class _GoodGirlScreenState extends ConsumerState<GoodGirlScreen> {
           (element) => element.lensDirection == CameraLensDirection.front);
       controller = CameraController(camera, ResolutionPreset.max);
 
-      ref.read(enterOnCameraScreenHolder.notifier).update((state) => true);
+      Future(() =>
+          ref.read(enterOnCameraScreenHolder.notifier).update((state) => true));
       controller.initialize().then((_) {
         if (!mounted) {
           return;
@@ -105,9 +106,7 @@ class _GoodGirlScreenState extends ConsumerState<GoodGirlScreen> {
                       )
                     : Column(
                         children: [
-                          Expanded(
-                            child: CameraPreview(controller),
-                          ),
+                          Expanded(child: CameraPreview(controller)),
                           const HowIlookButton(),
                         ],
                       ),

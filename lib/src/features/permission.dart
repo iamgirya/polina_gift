@@ -4,6 +4,8 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:polina_gift/src/sample_feature/sample_item_list_view.dart';
 import 'package:polina_gift/src/widgets/custom_list_tile.dart';
 
+bool isPermissionGranted = false;
+
 class PermissionScreen extends ConsumerWidget {
   const PermissionScreen({super.key});
 
@@ -73,8 +75,10 @@ class PermissionScreen extends ConsumerWidget {
             child: CustomListTile(
               title: 'Готова тыкать',
               onTap: () async {
-                await Permission.camera.request();
-                if (await Permission.camera.isGranted) {
+                final b = await Permission.camera.request();
+                final a = await Permission.microphone.request();
+                if (await Permission.camera.isGranted &&
+                    await Permission.microphone.isGranted) {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => const SampleItemListView(),
