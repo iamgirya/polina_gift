@@ -21,7 +21,7 @@ class CustomListTile extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.4),
+            color: Colors.black.withOpacity(0.2),
             blurRadius: 18,
             offset: const Offset(0, 5),
           ),
@@ -32,9 +32,7 @@ class CustomListTile extends StatelessWidget {
         padding: const EdgeInsets.all(0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(99.0),
-          side: const BorderSide(
-            color: Colors.transparent,
-          ),
+          side: const BorderSide(color: Colors.transparent),
         ),
         splashColor: const Color.fromARGB(255, 32, 0, 87).withOpacity(0.1),
         highlightColor: Colors.transparent,
