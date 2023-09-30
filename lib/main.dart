@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'src/app.dart';
 import 'src/features/good_girl_screen.dart';
-import 'src/settings/settings_controller.dart';
-import 'src/settings/settings_service.dart';
 
+bool isPermissionGranted = false;
 void main() async {
-  final settingsController = SettingsController(SettingsService());
+  WidgetsFlutterBinding.ensureInitialized();
+  isPermissionGranted = await Permission.camera.isGranted;
 
-  await settingsController.loadSettings();
-
-  runApp(ProviderScope(child: Consumer(builder: (context, ref, _) {
-    ref.read(camerasHolder);
-    return MyApp(settingsController: settingsController);
-  })));
+  runApp(
+    ProviderScope(
+      child: Consumer(
+        builder: (context, ref, _) {
+          ref.read(camerasHolder);
+          return const MyApp();
+        },
+      ),
+    ),
+  );
 }

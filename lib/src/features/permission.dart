@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:polina_gift/src/features/good_girl_screen.dart';
-import 'package:polina_gift/src/features/sounds_on_sadness.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:polina_gift/src/sample_feature/sample_item_list_view.dart';
+import 'package:polina_gift/src/widgets/custom_list_tile.dart';
 
-import '../features/random_shastun.dart';
-import '../features/spletnya.dart';
-import '../features/where_phone.dart';
-
-/// Displays a list of SampleItems.
-class SampleItemListView extends ConsumerWidget {
-  const SampleItemListView({
-    super.key,
-  });
-
-  static const routeName = '/';
+class PermissionScreen extends ConsumerWidget {
+  const PermissionScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -65,18 +57,31 @@ class SampleItemListView extends ConsumerWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 48, bottom: 48),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                // пермишен хендлер ещё заюзай
-                WherePhoneButton(),
-                RandomShastunButton(),
-                SoundsOnSadnessButton(),
-                GoodGirlButton(),
-                SpletnyaButton(),
-              ],
+          const Center(
+            child: Text(
+              'Чтобы приложение работало на отлично ему нужны пару разрешений. Тыкни на согласие в окошках, что появятся и дальше перейдём к подарку ',
+              style: TextStyle(
+                color: Color.fromARGB(255, 255, 255, 220),
+                fontSize: 22,
+                fontWeight: FontWeight.w700,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: CustomListTile(
+              title: 'Готова тыкать',
+              onTap: () async {
+                await Permission.camera.request();
+                if (await Permission.camera.isGranted) {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const SampleItemListView(),
+                    ),
+                  );
+                }
+              },
             ),
           ),
         ],

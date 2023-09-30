@@ -25,6 +25,11 @@ class _SoundsOnSadnessButtonState extends State<SoundsOnSadnessButton> {
   }
 }
 
+final playerMusic1 = AudioPlayer();
+bool music1Paused = true;
+final playerMusic2 = AudioPlayer();
+bool music2Paused = true;
+
 class SoundPadDialog extends StatefulWidget {
   const SoundPadDialog({
     Key? key,
@@ -35,11 +40,6 @@ class SoundPadDialog extends StatefulWidget {
 }
 
 class _SoundPadDialogState extends State<SoundPadDialog> {
-  final playerMusic1 = AudioPlayer();
-  bool music1Paused = false;
-  final playerMusic2 = AudioPlayer();
-  bool music2Paused = false;
-
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -157,7 +157,7 @@ class _SoundPadDialogState extends State<SoundPadDialog> {
                                   playerMusic2.release();
                                 } else {
                                   playerMusic2.pause();
-                                  music1Paused = true;
+                                  music2Paused = true;
                                 }
                                 setState(() {});
                               },
@@ -166,7 +166,7 @@ class _SoundPadDialogState extends State<SoundPadDialog> {
                               splashColor: Colors.transparent,
                             ),
                             const Text(
-                              'Залечивая свои раны',
+                              'Сегодня я сойду на нет',
                               style: TextStyle(
                                 color: Color.fromARGB(255, 255, 255, 220),
                                 fontSize: 16,
@@ -176,7 +176,7 @@ class _SoundPadDialogState extends State<SoundPadDialog> {
                             ),
                             IconButton(
                               onPressed: () {
-                                music1Paused = false;
+                                music2Paused = false;
                                 playerMusic2.source == null
                                     ? playerMusic2
                                         .play(AssetSource('sounds/izmena.mp3'))
