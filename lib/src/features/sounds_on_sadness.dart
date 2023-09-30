@@ -165,18 +165,32 @@ class _SoundPadDialogState extends State<SoundPadDialog> {
                                   Icon(music2Paused ? Icons.stop : Icons.pause),
                               splashColor: Colors.transparent,
                             ),
-                            const Text(
-                              'Сегодня я сойду на нет',
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 255, 255, 220),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
+                            GestureDetector(
+                              onTap: () {
+                                music2Paused = false;
+                                music1Paused = true;
+                                playerMusic1.pause();
+                                playerMusic2.source == null
+                                    ? playerMusic2
+                                        .play(AssetSource('sounds/izmena.mp3'))
+                                    : playerMusic2.resume();
+                                setState(() {});
+                              },
+                              child: const Text(
+                                'Сегодня я сойду на нет',
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 255, 255, 220),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                              textAlign: TextAlign.center,
                             ),
                             IconButton(
                               onPressed: () {
                                 music2Paused = false;
+                                music1Paused = true;
+                                playerMusic1.pause();
                                 playerMusic2.source == null
                                     ? playerMusic2
                                         .play(AssetSource('sounds/izmena.mp3'))
@@ -210,18 +224,32 @@ class _SoundPadDialogState extends State<SoundPadDialog> {
                                   Icon(music1Paused ? Icons.stop : Icons.pause),
                               splashColor: Colors.transparent,
                             ),
-                            const Text(
-                              'Ещё на мгновение...',
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 255, 255, 220),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
+                            GestureDetector(
+                              onTap: () {
+                                music1Paused = false;
+                                music2Paused = true;
+                                playerMusic2.pause();
+                                playerMusic1.source == null
+                                    ? playerMusic1
+                                        .play(AssetSource('sounds/itsme.mp3'))
+                                    : playerMusic1.resume();
+                                setState(() {});
+                              },
+                              child: const Text(
+                                'Ещё на мгновение...',
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 255, 255, 220),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                              textAlign: TextAlign.center,
                             ),
                             IconButton(
                               onPressed: () {
                                 music1Paused = false;
+                                music2Paused = true;
+                                playerMusic2.pause();
                                 playerMusic1.source == null
                                     ? playerMusic1
                                         .play(AssetSource('sounds/itsme.mp3'))
