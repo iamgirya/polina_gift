@@ -17,7 +17,7 @@ class _SpletnyaButtonState extends State<SpletnyaButton> {
   Widget build(BuildContext context) {
     return CustomListTile(
       title: 'Срочно посплетничать!',
-      onTap: () async => launchUrl(Uri.parse('tel://+79618562636')),
+      onTap: () async => launchUrl(Uri.parse('tel://+PHONE')),
     );
   }
 }
